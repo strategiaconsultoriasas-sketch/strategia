@@ -1,0 +1,144 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900,300&f[]=general-sans@500,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Marca oficial Strategia (del logo + brochure) */
+    --ink: 13 59 69;        /* #0D3B45 azul petróleo profundo */
+    --ink-deep: 10 42 52;   /* #0A2A34 más profundo */
+    --ink-soft: 20 72 86;   /* para hover */
+    --teal: 43 155 168;     /* #2B9BA8 teal del logo (A central) */
+    --teal-glow: 56 189 203;
+    --teal-deep: 29 115 128;
+
+    --paper: 253 253 251;   /* #FDFDFB ligeramente cálido */
+    --paper-2: 245 247 248; /* seccion alterna clara */
+    --paper-rule: 229 232 234;
+
+    --fg-on-dark: 243 243 240;
+    --fg-on-dark-mute: 162 184 190;
+    --fg-on-dark-dim: 100 128 136;
+
+    --fg-on-light: 13 59 69;
+    --fg-on-light-mute: 83 106 115;
+    --fg-on-light-dim: 142 160 167;
+
+    --radius: 2px; /* editorial: casi cuadrado, no rounded SaaS */
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Satoshi', 'Inter', system-ui, sans-serif;
+    background: rgb(var(--paper));
+    color: rgb(var(--fg-on-light));
+    font-feature-settings: 'ss01', 'ss02';
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; letter-spacing: -0.005em; }
+
+  ::selection { background: rgb(var(--teal) / 0.25); color: rgb(var(--ink)); }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-[1240px] px-6 md:px-10; }
+  .container-narrow { @apply mx-auto w-full max-w-[920px] px-6 md:px-10; }
+
+  /* Botones — editorial, no rounded-full SaaS */
+  .btn-ink {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em;
+    background: rgb(var(--ink)); color: rgb(var(--fg-on-dark));
+    border: 1px solid rgb(var(--ink));
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background 200ms;
+  }
+  .btn-ink:hover { background: rgb(var(--ink-soft)); }
+  .btn-ink:active { transform: scale(0.97); }
+
+  .btn-teal {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em;
+    background: rgb(var(--teal)); color: white;
+    border: 1px solid rgb(var(--teal));
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background 200ms;
+  }
+  .btn-teal:hover { background: rgb(var(--teal-deep)); border-color: rgb(var(--teal-deep)); }
+  .btn-teal:active { transform: scale(0.97); }
+
+  .btn-ghost-dark {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em;
+    background: transparent; color: rgb(var(--fg-on-dark));
+    border: 1px solid rgb(var(--fg-on-dark) / 0.3);
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 200ms, background 200ms;
+  }
+  .btn-ghost-dark:hover { border-color: rgb(var(--teal-glow)); background: rgb(var(--teal) / 0.1); }
+  .btn-ghost-dark:active { transform: scale(0.97); }
+
+  .btn-ghost-light {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.9rem 1.4rem; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em;
+    background: transparent; color: rgb(var(--ink));
+    border: 1px solid rgb(var(--ink) / 0.2);
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), border-color 200ms, background 200ms;
+  }
+  .btn-ghost-light:hover { border-color: rgb(var(--teal)); background: rgb(var(--teal) / 0.05); }
+  .btn-ghost-light:active { transform: scale(0.97); }
+
+  .kicker {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+  }
+
+  .rule-top { position: relative; padding-top: 0.5rem; }
+  .rule-top::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 48px; height: 2px;
+    background: rgb(var(--teal));
+  }
+
+  /* Para fondos oscuros */
+  .surface-ink { background: rgb(var(--ink)); color: rgb(var(--fg-on-dark)); }
+  .surface-ink-deep { background: rgb(var(--ink-deep)); color: rgb(var(--fg-on-dark)); }
+  .surface-paper { background: rgb(var(--paper)); color: rgb(var(--ink)); }
+  .surface-paper-2 { background: rgb(var(--paper-2)); color: rgb(var(--ink)); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 60s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+/* Scrollbar discreto */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: rgb(var(--paper-2)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--ink) / 0.2); }
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--ink) / 0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
