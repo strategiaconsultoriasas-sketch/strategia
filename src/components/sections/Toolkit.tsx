@@ -55,8 +55,12 @@ export function Toolkit() {
 
             <div className="relative bg-gradient-to-br from-paper-2 to-paper overflow-hidden min-h-[400px]">
               <img
-                src="/assets/img/diagnostico-360.png"
+                src="/assets/img/diagnostico-360.webp"
                 alt="Diagnóstico Empresarial 360°"
+                width={1200}
+                height={900}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </div>

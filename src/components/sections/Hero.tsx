@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
 
   // Parallax sutil
@@ -10,27 +12,58 @@ export function Hero() {
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0])
 
+  // Carga diferida del video: el poster pinta el LCP primero, luego llega el video
+  useEffect(() => {
+    // Respetar prefers-reduced-motion: no cargar video
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced) return
+    // Esperar al load window + un tick extra para no pelear con el LCP
+    const schedule = () => {
+      const idle = (window as unknown as { requestIdleCallback?: (cb: () => void) => void })
+        .requestIdleCallback
+      if (idle) idle(() => setShouldLoadVideo(true))
+      else setTimeout(() => setShouldLoadVideo(true), 400)
+    }
+    if (document.readyState === 'complete') schedule()
+    else window.addEventListener('load', schedule, { once: true })
+    return () => window.removeEventListener('load', schedule)
+  }, [])
+
   return (
     <section ref={ref} className="relative min-h-screen surface-ink overflow-hidden">
-      {/* Video dominante (lazy, se descarga solo cuando el navegador lo pide) */}
+      {/* Poster como <img> para que sea el candidato LCP */}
       <motion.div style={{ scale: videoScale }} className="absolute inset-0 bg-ink-deep">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/assets/img/transformacion.jpg"
-          className="w-full h-full object-cover"
+        <img
+          src="/assets/img/transformacion.jpg"
+          alt=""
+          width={1920}
+          height={1080}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
           aria-hidden
-        >
-          <source src="/assets/video/encabezado.mp4" type="video/mp4" />
-        </video>
+        />
+        {shouldLoadVideo && (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            width={1280}
+            height={720}
+            className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700"
+            onCanPlay={(e) => e.currentTarget.classList.remove('opacity-0')}
+            aria-hidden
+          >
+            <source src="/assets/video/encabezado.mp4" type="video/mp4" />
+          </video>
+        )}
       </motion.div>
 
       {/* Overlay editorial petróleo (más denso abajo para legibilidad) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/70 to-ink pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/30 to-ink/50 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink/50 to-ink pointer-events-none" />
 
       {/* Noise + grid sutil */}
       <div

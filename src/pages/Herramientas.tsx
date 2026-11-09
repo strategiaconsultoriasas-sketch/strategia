@@ -4,18 +4,18 @@ import { PageHero } from '../components/PageHero'
 import { Toolkit } from '../components/sections/Toolkit'
 
 const infographics = [
-  { img: '/assets/img/ciclo-estrategico.png', title: 'El ciclo estratégico', tag: 'Metodología' },
-  { img: '/assets/img/5-principios.png', title: '5 principios empresariales', tag: 'Fundamentos' },
-  { img: '/assets/img/que-hace-rentable.png', title: '¿Qué hace rentable a un negocio?', tag: 'Finanzas' },
-  { img: '/assets/img/arte-de-dirigir.png', title: 'El arte de dirigir', tag: 'Liderazgo' },
-  { img: '/assets/img/habilidades.png', title: 'Habilidades que abren puertas', tag: 'Talento' },
-  { img: '/assets/img/7-verdades-liderazgo.png', title: 'Las 7 verdades del liderazgo', tag: 'Liderazgo' },
-  { img: '/assets/img/eficiencia-vs-eficacia.png', title: 'Eficiencia vs. eficacia', tag: 'Operaciones' },
-  { img: '/assets/img/formula-exito.png', title: 'La fórmula del éxito', tag: 'Estrategia' },
-  { img: '/assets/img/gestionar-tiempo.png', title: 'Aprende a gestionar tu tiempo', tag: 'Productividad' },
-  { img: '/assets/img/no-falta-tiempo.png', title: 'No te falta tiempo, te sobran prioridades', tag: 'Enfoque' },
-  { img: '/assets/img/optimizar-estrategia.png', title: 'Cómo optimizar tu estrategia', tag: 'Estrategia' },
-  { img: '/assets/img/eficiencia.png', title: 'La eficiencia no es hacer más', tag: 'Operaciones' },
+  { img: '/assets/img/ciclo-estrategico.webp', title: 'El ciclo estratégico', tag: 'Metodología' },
+  { img: '/assets/img/5-principios.webp', title: '5 principios empresariales', tag: 'Fundamentos' },
+  { img: '/assets/img/que-hace-rentable.webp', title: '¿Qué hace rentable a un negocio?', tag: 'Finanzas' },
+  { img: '/assets/img/arte-de-dirigir.webp', title: 'El arte de dirigir', tag: 'Liderazgo' },
+  { img: '/assets/img/habilidades.webp', title: 'Habilidades que abren puertas', tag: 'Talento' },
+  { img: '/assets/img/7-verdades-liderazgo.webp', title: 'Las 7 verdades del liderazgo', tag: 'Liderazgo' },
+  { img: '/assets/img/eficiencia-vs-eficacia.webp', title: 'Eficiencia vs. eficacia', tag: 'Operaciones' },
+  { img: '/assets/img/formula-exito.webp', title: 'La fórmula del éxito', tag: 'Estrategia' },
+  { img: '/assets/img/gestionar-tiempo.webp', title: 'Aprende a gestionar tu tiempo', tag: 'Productividad' },
+  { img: '/assets/img/no-falta-tiempo.webp', title: 'No te falta tiempo, te sobran prioridades', tag: 'Enfoque' },
+  { img: '/assets/img/optimizar-estrategia.webp', title: 'Cómo optimizar tu estrategia', tag: 'Estrategia' },
+  { img: '/assets/img/eficiencia.webp', title: 'La eficiencia no es hacer más', tag: 'Operaciones' },
 ]
 
 export default function Herramientas() {
@@ -71,7 +71,10 @@ export default function Herramientas() {
                   <img
                     src={it.img}
                     alt={it.title}
+                    width={800}
+                    height={800}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain transition-transform duration-500 ease-out-strong group-hover:scale-[1.03]"
                   />
                 </div>

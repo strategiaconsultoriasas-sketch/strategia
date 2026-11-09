@@ -7,16 +7,16 @@ import { ArrowUpRight } from 'lucide-react'
  * Marquee horizontal con las infografías reales que ya usamos con clientes.
  */
 const items = [
-  { img: '/assets/img/ciclo-estrategico.png', title: 'El ciclo estratégico' },
-  { img: '/assets/img/5-principios.png', title: '5 principios empresariales' },
-  { img: '/assets/img/arte-de-dirigir.png', title: 'El arte de dirigir' },
-  { img: '/assets/img/habilidades.png', title: 'Habilidades que abren puertas' },
-  { img: '/assets/img/7-verdades-liderazgo.png', title: '7 verdades del liderazgo' },
-  { img: '/assets/img/eficiencia-vs-eficacia.png', title: 'Eficiencia vs. eficacia' },
-  { img: '/assets/img/formula-exito.png', title: 'La fórmula del éxito' },
-  { img: '/assets/img/no-falta-tiempo.png', title: 'No te falta tiempo' },
-  { img: '/assets/img/que-hace-rentable.png', title: '¿Qué hace rentable?' },
-  { img: '/assets/img/optimizar-estrategia.png', title: 'Optimizar la estrategia' },
+  { img: '/assets/img/ciclo-estrategico.webp', title: 'El ciclo estratégico' },
+  { img: '/assets/img/5-principios.webp', title: '5 principios empresariales' },
+  { img: '/assets/img/arte-de-dirigir.webp', title: 'El arte de dirigir' },
+  { img: '/assets/img/habilidades.webp', title: 'Habilidades que abren puertas' },
+  { img: '/assets/img/7-verdades-liderazgo.webp', title: '7 verdades del liderazgo' },
+  { img: '/assets/img/eficiencia-vs-eficacia.webp', title: 'Eficiencia vs. eficacia' },
+  { img: '/assets/img/formula-exito.webp', title: 'La fórmula del éxito' },
+  { img: '/assets/img/no-falta-tiempo.webp', title: 'No te falta tiempo' },
+  { img: '/assets/img/que-hace-rentable.webp', title: '¿Qué hace rentable?' },
+  { img: '/assets/img/optimizar-estrategia.webp', title: 'Optimizar la estrategia' },
 ]
 
 export function InfographicStrip() {
@@ -69,7 +69,10 @@ export function InfographicStrip() {
                 <img
                   src={it.img}
                   alt={it.title}
+                  width={800}
+                  height={800}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain transition-transform duration-500 ease-out-strong group-hover:scale-[1.02]"
                 />
               </div>

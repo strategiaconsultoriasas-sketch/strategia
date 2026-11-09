@@ -3,19 +3,19 @@ import { ArrowUpRight } from 'lucide-react'
 
 const items = [
   {
-    img: '/assets/img/ciclo-estrategico.png',
+    img: '/assets/img/ciclo-estrategico.webp',
     title: 'El ciclo estratégico',
     sub: 'Un sistema que todo CEO debe conocer e implementar para escalar.',
     tag: 'Metodología',
   },
   {
-    img: '/assets/img/5-principios.png',
+    img: '/assets/img/5-principios.webp',
     title: '5 principios empresariales',
     sub: 'Para etapas iniciales del negocio.',
     tag: 'Fundamentos',
   },
   {
-    img: '/assets/img/que-hace-rentable.png',
+    img: '/assets/img/que-hace-rentable.webp',
     title: '¿Qué hace rentable a un negocio?',
     sub: 'Palancas de rentabilidad que casi nadie activa a la vez.',
     tag: 'Finanzas',
@@ -65,6 +65,10 @@ export function Gallery() {
                 <img
                   src={it.img}
                   alt={it.title}
+                  width={800}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain transition-transform duration-700 ease-out-strong group-hover:scale-[1.02]"
                 />
               </div>
