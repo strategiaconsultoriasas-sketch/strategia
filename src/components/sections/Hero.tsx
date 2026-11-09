@@ -102,21 +102,21 @@ export function Hero() {
           <h1 className="text-[2.5rem] sm:text-6xl lg:text-[5.5rem] font-medium tracking-[-0.035em] leading-[0.98] text-fg-on-dark">
             <WordReveal
               text="Transformamos la incertidumbre"
-              delay={0.15}
+              delay={0}
             />
             <br />
             <WordReveal
               text="en ventaja competitiva."
-              delay={0.5}
+              delay={0.2}
               accent="ventaja competitiva."
             />
           </h1>
 
           {/* Sub */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0.01, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2, ease: [0.23, 1, 0.32, 1] }}
+            transition={{ duration: 0.5, delay: 0.55, ease: [0.23, 1, 0.32, 1] }}
             className="mt-10 max-w-xl text-lg md:text-xl text-fg-on-dark leading-[1.55]"
           >
             Firma colombiana de consultoría en{' '}
@@ -163,20 +163,20 @@ function WordReveal({
         const isAccentWord =
           accent && accent.toLowerCase().split(' ').includes(w.toLowerCase().replace('.', ''))
         return (
-          <span key={i} className="inline-block overflow-hidden">
-            <motion.span
-              initial={{ y: '110%' }}
-              animate={{ y: 0 }}
-              transition={{
-                duration: 0.9,
-                delay: delay + i * 0.06,
-                ease: [0.23, 1, 0.32, 1],
-              }}
-              className={`inline-block ${isAccentWord ? 'text-teal-glow' : ''}`}
-            >
-              {w}
-            </motion.span>
-          </span>
+          <motion.span
+            key={i}
+            // initial > 0 para que Chrome registre el elemento como pintado (LCP) desde el primer frame
+            initial={{ opacity: 0.01, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.35,
+              delay: delay + i * 0.025,
+              ease: [0.23, 1, 0.32, 1],
+            }}
+            className={`inline-block ${isAccentWord ? 'text-teal-glow' : ''}`}
+          >
+            {w}
+          </motion.span>
         )
       })}
     </span>
