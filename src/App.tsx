@@ -11,6 +11,7 @@ const Equipo = lazy(() => import('./pages/Equipo'))
 const Herramientas = lazy(() => import('./pages/Herramientas'))
 const Contacto = lazy(() => import('./pages/Contacto'))
 const DiagnosticoPage = lazy(() => import('./pages/DiagnosticoPage'))
+const Privacidad = lazy(() => import('./pages/Privacidad'))
 
 function LazyFallback() {
   return (
@@ -78,6 +79,14 @@ export default function App() {
           element={
             <Suspense fallback={<LazyFallback />}>
               <DiagnosticoPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/privacidad"
+          element={
+            <Suspense fallback={<LazyFallback />}>
+              <Privacidad />
             </Suspense>
           }
         />

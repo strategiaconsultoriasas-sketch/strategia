@@ -36,7 +36,7 @@ export function SocialFeed() {
               rel="noopener noreferrer"
               className="btn-ink group"
             >
-              <TikTokLogo /> 710 en TikTok
+              <TikTokLogo /> Síganos en TikTok
               <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
@@ -82,21 +82,16 @@ export function SocialFeed() {
               }}
             />
             <div className="relative">
-              <div className="kicker text-teal-glow mb-3">Perfil activo · 2026</div>
+              <div className="kicker text-teal-glow mb-3">Perfil activo</div>
               <h3 className="text-2xl md:text-3xl font-medium text-fg-on-dark tracking-tight leading-tight mb-6">
-                1.134 me gusta en TikTok. 185 seguidores en Facebook.
+                Un modelo de gestión nuevo cada semana.
               </h3>
               <p className="text-sm text-fg-on-dark leading-relaxed">
-                Nuestros contenidos — infografías, videos y modelos de gestión — se publican
-                antes aquí que en cualquier otro canal.
+                Infografías, videos cortos y marcos conceptuales — publicados antes
+                aquí que en cualquier otro canal.
               </p>
             </div>
-            <div className="relative mt-8 flex items-center justify-between">
-              <div className="flex items-baseline gap-6">
-                <StatBlock n="1.1k" label="likes TikTok" />
-                <StatBlock n="710" label="seguidores" />
-                <StatBlock n="40+" label="videos" />
-              </div>
+            <div className="relative mt-8 flex items-center justify-end">
               <ArrowUpRight
                 size={20}
                 className="text-teal-glow transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -165,17 +160,6 @@ function VideoCard({
         <h4 className="text-lg md:text-xl font-medium tracking-tight">{label}</h4>
       </div>
     </motion.button>
-  )
-}
-
-function StatBlock({ n, label }: { n: string; label: string }) {
-  return (
-    <div>
-      <div className="text-xl font-medium text-teal-glow tabular-nums leading-none">{n}</div>
-      <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-fg-on-dark-dim">
-        {label}
-      </div>
-    </div>
   )
 }
 

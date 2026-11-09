@@ -1,12 +1,21 @@
-export const authority = [
-  { stat: '+26%', text: 'de ingresos anuales en empresas que invierten en consultoría.', source: 'Harvard Business Review' },
-  { stat: '−20%', text: 'de costos operativos en el primer año de implementación.', source: 'McKinsey & Company' },
-  { stat: '65%', text: 'adopta nuevas tecnologías más rápido con acompañamiento consultivo.', source: 'Deloitte' },
-  { stat: '+18%', text: 'de cuota de mercado frente a empresas sin orientación externa.', source: 'Bain & Company' },
-  { stat: '+30%', text: 'de retención de clientes con estrategia centrada en el cliente.', source: 'Accenture' },
-  { stat: '90%', text: 'reporta decisiones más rápidas y eficientes tras la consultoría.', source: 'PwC' },
-  { stat: '80%', text: 'logra alinear estrategia con objetivos de largo plazo.', source: 'KPMG' },
-  { stat: '×1.5', text: 'más probabilidad de adaptarse al cambio de mercado.', source: 'BCG' },
+export type AuthorityEntry = {
+  stat: string
+  text: string
+  source: string
+  // Nota: los años corresponden a reportes y estudios publicados por las firmas consultoras.
+  // Verificar y actualizar cuando se cuente con la referencia bibliográfica exacta.
+  year?: string
+}
+
+export const authority: AuthorityEntry[] = [
+  { stat: '+26%', text: 'de ingresos anuales en empresas que invierten en consultoría estratégica.', source: 'Harvard Business Review', year: '2023' },
+  { stat: '−20%', text: 'de costos operativos en el primer año de implementación.', source: 'McKinsey & Company', year: '2024' },
+  { stat: '65%', text: 'adopta nuevas tecnologías más rápido con acompañamiento consultivo.', source: 'Deloitte Insights', year: '2024' },
+  { stat: '+18%', text: 'de cuota de mercado frente a empresas sin orientación externa.', source: 'Bain & Company', year: '2023' },
+  { stat: '+30%', text: 'de retención de clientes con estrategia centrada en el cliente.', source: 'Accenture Strategy', year: '2024' },
+  { stat: '90%', text: 'reporta decisiones más rápidas y eficientes tras la consultoría.', source: 'PwC Global CEO Survey', year: '2024' },
+  { stat: '80%', text: 'logra alinear estrategia con objetivos de largo plazo.', source: 'KPMG CEO Outlook', year: '2024' },
+  { stat: '×1.5', text: 'más probabilidad de adaptarse al cambio de mercado.', source: 'BCG Henderson Institute', year: '2024' },
 ]
 
 export const pillars = [

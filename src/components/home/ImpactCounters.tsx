@@ -221,7 +221,7 @@ function KpiPanel({ data }: { data: SourceDatum }) {
           <span className="h-1.5 w-1.5 rounded-full bg-teal-glow animate-pulse" />
           <span className="kicker text-teal-glow">Eje activo · {data.axis}</span>
         </div>
-        <span className="kicker text-fg-on-dark-dim">Fuente verificada</span>
+        <span className="kicker text-fg-on-dark-dim">Fuente externa</span>
       </div>
 
       {/* Número XL */}

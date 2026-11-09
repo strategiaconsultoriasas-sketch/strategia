@@ -83,42 +83,31 @@ export function Footer() {
               { label: 'Portafolio', href: '/portafolio' },
               { label: 'Equipo', href: '/equipo' },
               { label: 'Herramientas', href: '/herramientas' },
+              { label: 'Contacto', href: '/contacto' },
             ]}
           />
           <FooterCol
-            title="Contacto"
+            title="Conversar"
             links={[
               { label: 'WhatsApp', href: 'https://wa.me/573203047445', external: true },
-              { label: 'Colombia +57', href: 'tel:+573203047445' },
-              { label: 'Correo', href: 'mailto:strategiaconsultoriasas@gmail.com' },
+              { label: 'Colombia +57 320 304 7445', href: 'tel:+573203047445' },
+              { label: 'strategiaconsultoriasas@gmail.com', href: 'mailto:strategiaconsultoriasas@gmail.com' },
               { label: 'Diagnóstico 360°', href: '/diagnostico' },
             ]}
           />
           <FooterCol
-            title="Redes"
+            title="Legal"
             links={[
-              {
-                label: 'Facebook · 185 seguidores',
-                href: FACEBOOK_URL,
-                external: true,
-              },
-              {
-                label: 'TikTok · 710 seguidores',
-                href: TIKTOK_URL,
-                external: true,
-              },
+              { label: 'Política de tratamiento de datos', href: '/privacidad' },
+              { label: 'Facebook', href: FACEBOOK_URL, external: true },
+              { label: 'TikTok', href: TIKTOK_URL, external: true },
             ]}
           />
         </div>
 
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs text-fg-on-dark-dim">
           <div>© {year} Strategia Consultoría e Innovación. Todos los derechos reservados.</div>
-          <div>
-            Desarrollado por{' '}
-            <span className="text-fg-on-dark-mute font-medium">
-              Strategia Consultoría e Innovación
-            </span>
-          </div>
+          <div>Yopal · Casanare · Colombia</div>
         </div>
       </div>
     </footer>

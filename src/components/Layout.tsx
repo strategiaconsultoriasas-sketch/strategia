@@ -16,17 +16,25 @@ export function Layout() {
 
   return (
     <div className="min-h-screen bg-paper flex flex-col">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-ink focus:text-fg-on-dark focus:px-4 focus:py-2 focus:border focus:border-teal-glow focus:outline-none"
+      >
+        Saltar al contenido principal
+      </a>
       <CursorFollower />
       <ContactFab />
       <Nav />
       <AnimatePresence mode="wait">
         <motion.main
+          id="main"
+          tabIndex={-1}
           key={location.pathname}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-          className="flex-1"
+          className="flex-1 focus:outline-none"
         >
           <Outlet />
         </motion.main>

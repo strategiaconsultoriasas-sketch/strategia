@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   ArrowLeft,
   ArrowRight,
@@ -25,7 +26,7 @@ const ICONS: Record<string, typeof Target> = {
   Target, LineChart, Megaphone, Cpu, Settings, Users, Calendar, ShieldCheck, Sprout,
 }
 
-type Profile = { name: string; company: string; email: string; whatsapp: string }
+type Profile = { name: string; company: string; email: string; whatsapp: string; consent: boolean }
 
 type Step =
   | { kind: 'intro' }
@@ -37,7 +38,7 @@ const LS_KEY = 'strategia-diagnostico-v1'
 
 export function Diagnostico() {
   const [step, setStep] = useState<Step>({ kind: 'intro' })
-  const [profile, setProfile] = useState<Profile>({ name: '', company: '', email: '', whatsapp: '' })
+  const [profile, setProfile] = useState<Profile>({ name: '', company: '', email: '', whatsapp: '', consent: false })
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const topRef = useRef<HTMLDivElement>(null)
 
@@ -144,7 +145,7 @@ export function Diagnostico() {
 
   function reset() {
     setAnswers({})
-    setProfile({ name: '', company: '', email: '', whatsapp: '' })
+    setProfile({ name: '', company: '', email: '', whatsapp: '', consent: false })
     localStorage.removeItem(LS_KEY)
     setStep({ kind: 'intro' })
   }
@@ -285,7 +286,8 @@ function ProfileStep({
     profile.name.trim().length > 1 &&
     profile.company.trim().length > 1 &&
     /^\S+@\S+\.\S+$/.test(profile.email.trim()) &&
-    profile.whatsapp.replace(/\D/g, '').length >= 7
+    profile.whatsapp.replace(/\D/g, '').length >= 7 &&
+    profile.consent === true
 
   return (
     <motion.div
@@ -313,12 +315,14 @@ function ProfileStep({
           value={profile.name}
           onChange={(v) => onChange({ ...profile, name: v })}
           placeholder="Juan Pérez"
+          autoComplete="name"
         />
         <Field
           label="Empresa u organización"
           value={profile.company}
           onChange={(v) => onChange({ ...profile, company: v })}
           placeholder="Industrias ABC S.A.S."
+          autoComplete="organization"
         />
         <Field
           label="Correo electrónico"
@@ -326,6 +330,8 @@ function ProfileStep({
           value={profile.email}
           onChange={(v) => onChange({ ...profile, email: v })}
           placeholder="juan@empresa.com"
+          autoComplete="email"
+          inputMode="email"
         />
         <Field
           label="WhatsApp"
@@ -333,8 +339,28 @@ function ProfileStep({
           value={profile.whatsapp}
           onChange={(v) => onChange({ ...profile, whatsapp: v })}
           placeholder="+57 300 123 4567"
+          autoComplete="tel"
+          inputMode="tel"
         />
       </div>
+
+      {/* Consentimiento Ley 1581/2012 Habeas Data */}
+      <label className="flex items-start gap-4 mb-10 cursor-pointer group">
+        <input
+          type="checkbox"
+          checked={profile.consent}
+          onChange={(e) => onChange({ ...profile, consent: e.target.checked })}
+          className="mt-1 h-5 w-5 shrink-0 appearance-none border border-white/30 bg-transparent checked:bg-teal-glow checked:border-teal-glow focus-visible:ring-2 focus-visible:ring-teal-glow focus-visible:ring-offset-2 focus-visible:ring-offset-ink cursor-pointer transition-colors relative after:absolute after:inset-0 after:flex after:items-center after:justify-center after:content-[''] checked:after:content-['✓'] checked:after:text-ink after:text-xs after:font-bold"
+          aria-describedby="consent-desc"
+        />
+        <span id="consent-desc" className="text-sm text-fg-on-dark-mute leading-relaxed group-hover:text-fg-on-dark transition-colors">
+          Autorizo a <strong className="text-fg-on-dark font-medium">Strategia Consultoría e Innovación S.A.S.</strong> a tratar mis datos personales con las finalidades descritas en su{' '}
+          <Link to="/privacidad" target="_blank" className="text-teal-glow underline underline-offset-2 hover:text-fg-on-dark">
+            política de tratamiento de datos
+          </Link>
+          , conforme a la Ley 1581 de 2012 de la República de Colombia.
+        </span>
+      </label>
 
       <div className="flex items-center justify-between">
         <button onClick={onBack} className="btn-ghost-dark text-sm">
@@ -354,12 +380,16 @@ function Field({
   onChange,
   type = 'text',
   placeholder,
+  autoComplete,
+  inputMode,
 }: {
   label: string
   value: string
   onChange: (v: string) => void
   type?: string
   placeholder?: string
+  autoComplete?: string
+  inputMode?: 'text' | 'email' | 'tel' | 'numeric' | 'url' | 'search' | 'none' | 'decimal'
 }) {
   return (
     <label className="block">
@@ -369,7 +399,9 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-transparent border-b border-white/15 focus:border-teal-glow outline-none text-fg-on-dark text-lg py-2.5 transition-colors"
+        autoComplete={autoComplete}
+        inputMode={inputMode}
+        className="w-full bg-transparent border-b border-white/15 focus-visible:border-teal-glow focus-visible:outline-none focus-visible:ring-0 outline-none text-fg-on-dark text-lg py-2.5 transition-colors"
       />
     </label>
   )
